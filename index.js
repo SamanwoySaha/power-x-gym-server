@@ -29,21 +29,21 @@ client.connect(err => {
           res.send(documents);
         }
       })
+  });
 
-    app.get('/pricings', (req, res) => {
-      pricingsCollection.find({})
-        .toArray((err, documents) => {
-          if (err) {
-            res.status(404).send('Error');
-          }
-          else {
-            res.send(documents);
-          }
-        })
-    });
+  app.get('/pricings', (req, res) => {
+    pricingsCollection.find({})
+      .toArray((err, documents) => {
+        if (err) {
+          res.status(404).send('Error');
+        }
+        else {
+          res.send(documents);
+        }
+      })
   });
 
   console.log('database connected');
 });
 
-app.listen(port, () => {console.log(`listenign to port ${port}`);});
+app.listen(port, () => { console.log(`listenign to port ${port}`); });

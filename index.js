@@ -43,7 +43,16 @@ client.connect(err => {
       })
   });
 
-  console.log('database connected');
+  app.post('/addMember', (req, res) => {
+    membershipsCollection.insertOne(req.body)
+    .then(result => {
+      if(result.insertedCount > 0){
+        res.send(result.insertedCount > 0);
+      } else {
+        res.status(404).send('Error');
+      }
+    })
+  })
 });
 
-app.listen(port, () => { console.log(`listenign to port ${port}`); });
+app.listen(port);
